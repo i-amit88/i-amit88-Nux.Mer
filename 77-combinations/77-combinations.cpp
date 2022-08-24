@@ -2,13 +2,15 @@ class Solution {
 public:
     
     void help(int i ,int n , int k , vector<int> &subset , vector<vector<int>> &ans){
-        //if(i > n){
+        if(i > n){
             if(k==0){
                 ans.push_back(subset);
-                return;
+                
             }
+            return;
+        }
             
-            if(i>n)return;
+           
         
         
         subset.push_back(i);   //take the element
