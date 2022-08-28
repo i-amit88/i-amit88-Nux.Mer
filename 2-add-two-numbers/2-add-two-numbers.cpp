@@ -60,35 +60,25 @@ struct ListNode* addTwoNumbers(struct ListNode* l1, struct ListNode* l2){
 class Solution {
 public:
     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
-        ListNode *l = new ListNode(0);
-        ListNode *ans = l;
-        int carry=0;
-        while(l1 && l2)
-        {
-            int sum = l1->val+l2->val+carry;
-            carry = (sum>9)?1:0;
-            l->next = new ListNode(sum%10);
-            l = l->next;
-            l1 = l1->next;
-            l2 = l2->next;
+      ListNode * head = new ListNode();
+        ListNode* curr = head;
+        int sum = 0;
+        int carry = 0;
+        while(l1 != NULL || l2 != NULL || carry){
+            if(l1!= NULL){
+                sum = sum + l1->val;
+                l1 = l1->next;
+            }
+            if(l2 !=NULL){
+                sum = sum + l2 -> val;
+                l2 = l2->next;
+            }
+            sum+=carry;
+            curr->next = new ListNode(sum%10);
+            carry = sum/10;
+            sum = 0;
+            curr = curr->next;
         }
-        while(l1)
-        {
-            int sum = l1->val+carry;
-            carry = (sum>9)?1:0;
-            l->next = new ListNode(sum%10);
-            l = l->next;
-            l1 = l1->next;
-        }
-        while(l2)
-        {
-            int sum = l2->val+carry;
-            carry = (sum>9)?1:0;
-            l->next = new ListNode(sum%10);
-            l = l->next;
-            l2 = l2->next;
-        }
-        if(carry)    l->next = new ListNode(1);
-        return ans->next;
+        return head ->next;
     }
 };
